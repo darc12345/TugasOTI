@@ -1,0 +1,59 @@
+package repository
+
+func (h *DBrepo) Createtables() error {
+	db := h.db
+	var err error
+	_, err = db.Exec(`
+	CREATE TABLE IF NOT EXISTS Products(
+		PRODUCTID VARCHAR(255) NOT NULL,
+		PRODUCTDESC VARCHAR(255),
+		PRODUCTNAME VARCHAR(128),
+		PRIMARY KEY (PRODUCTID)
+	);
+	`)
+	if err != nil {
+		return err
+	}
+
+	_, err = db.Exec(`
+	CREATE TABLE IF NOT EXISTS Users(
+		USERID VARCHAR(255) NOT NULL,
+		EMAIL VARCHAR(255) NOT NULL,
+		ADDRESS VARCHAR(255) NOT NULL,
+		PASSWORDHASH VARCHAR(255) NOT NULL,
+		PRIMARY KEY (USERID)
+	);
+	`)
+	if err != nil {
+		return err
+	}
+
+	_, err = db.Exec(`
+	CREATE TABLE IF NOT EXISTS Orders(
+		USERID VARCHAR(255) NOT NULL,
+		ORDERID VARCHAR(255) NOT NULL,
+		PRIMARY KEY (ORDERID),
+		FOREIGN KEY (USERID) REFERENCES Users(USERID)
+	);
+	`)
+	if err != nil {
+		return err
+	}
+
+	_, err = db.Exec(`
+	CREATE TABLE IF NOT EXISTS OrderDetails(
+		ORDERID VARCHAR(255) NOT NULL,
+		PRODUCTID VARCHAR(255) NOT NULL,
+		QUANTITY INT UNSIGNED NOT NULL,
+		PRICE BIGINT UNSIGNED,
+		TOTAL BIGINT UNSIGNED,
+		PRIMARY KEY (ORDERID, PRODUCTID),
+		FOREIGN KEY (PRODUCTID) REFERENCES Products(PRODUCTID),
+		FOREIGN KEY (ORDERID) REFERENCES Orders(ORDERID)
+	);
+	`)
+	if err != nil {
+		return err
+	}
+	return err
+}

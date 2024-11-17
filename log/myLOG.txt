@@ -1,0 +1,4 @@
+2024/11/17 19:38:08 Failed to retrieve product by ID from database. Product ID: 7ecd7ff6-05b7-46a6-8bbd-03777874c60, Original Error: sql: no rows in result set
+2024/11/17 19:39:01 Failed to retrieve product by ID from database. Product ID: 7ecd7ff6-05b7-46a6-8bbd-03777874c60, Original Error: sql: no rows in result set
+2024/11/17 19:39:29 Failed to retrieve product by ID from database. Product ID: 7ecd7ff6-05b7-46a6-8bbd-03777874c60, Original Error: sql: no rows in result set
+2024/11/17 19:40:34 Failed to retrieve product by ID from database. Product ID: 7ecd7ff6-05b7-46a6-8bbd-03777874c60, Original Error: sql: no rows in result set
